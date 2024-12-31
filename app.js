@@ -6,11 +6,14 @@ const PORT = process.env.PORT || 3001;
 const path = require('path');
 const Campground = require('./models/campground.model')
 const connectDB = require('./config/db.js');
+const methodOverride = require('method-override');
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.urlencoded({ extended: true}))
+app.use(express.json());
+app.use(methodOverride('_method'));
 
 app.get('/', (req, res) => {
   res.render('home');
@@ -32,13 +35,26 @@ app.post('/campgrounds', async (req, res) => {
   res.redirect(`/campgrounds/${newCampground._id}`)
 })
 
+app.get('/campgrounds/:id/edit', async (req, res) => {
+  const { id } = req.params;
+  const campground = await Campground.findById(id);
+  res.render('campgrounds/edit', { campground });
+})
+
+app.put('/campgrounds/:id', async (req, res) => {
+  const { id } = req.params;
+  const campground = await Campground.findByIdAndUpdate(id, req.body, { runValidators: true, new: true });
+  res.redirect(`/campgrounds/${campground._id}`)
+})
+
 
 
 app.get('/campgrounds/:_id', async (req, res) => {
-  const id = req.params;
+  const id  = req.params;
   const campground = await Campground.findById(id);
   res.render('campgrounds/show', { campground });
 })
+
 
 
 
