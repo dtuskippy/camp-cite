@@ -46,7 +46,8 @@ app.put('/campgrounds/:id', async (req, res) => {
   const campground = await Campground.findByIdAndUpdate(id, req.body, { runValidators: true, new: true });
   res.redirect(`/campgrounds/${campground._id}`)
 })
-
+// can see what he did as well.
+// const campground = await Campground.findByIdAndUpdate(id, { ...req.body.campground });
 
 
 app.get('/campgrounds/:_id', async (req, res) => {
@@ -56,7 +57,11 @@ app.get('/campgrounds/:_id', async (req, res) => {
 })
 
 
-
+app.delete('/campgrounds/:id', async (req, res) => {
+  const { id } = req.params;
+  const deleteCampground = await Campground.findByIdAndDelete(id);
+  res.redirect(`/campgrounds/`)
+})
 
 
 

@@ -10,13 +10,14 @@
   <form action="/campgrounds/<%= campground._id %>?_method=PUT" method="POST">
     <div>
       <label for="title">Campground Title</label>
-      <input type="text" name="title" id="title" placeholder="Campground Title" value="<%= campground.title %>">
+      <input type="text" name="title" id="title"  value="<%= campground.title %>">
     </div>
     <div>
       <label for="location">Campground Location</label>
-      <input type="text" name="location" id="location" placeholder="Campground Location" value="<%= campground.location %>">
+      <input type="text" name="location" id="location" value="<%= campground.location %>">
+      <!-- value means starting value -->
     </div>
-    <button type="submit">Submit</button>
+    <button type="submit">Update Campground</button>
   </form>
   <a href="/campgrounds/<%= campground._id %>">Cancel</a>
 </body>
