@@ -1,24 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Edit Campground</title>
-</head>
-<body>
-  <h1>Edit Campground: <%= campground.title %></h1>
-  <form action="/campgrounds/<%= campground._id %>?_method=PUT" method="POST">
-    <div>
-      <label for="title">Campground Title</label>
-      <input type="text" name="title" id="title"  value="<%= campground.title %>">
-    </div>
-    <div>
-      <label for="location">Campground Location</label>
-      <input type="text" name="location" id="location" value="<%= campground.location %>">
-      <!-- value means starting value -->
-    </div>
-    <button type="submit">Update Campground</button>
-  </form>
-  <a href="/campgrounds/<%= campground._id %>">Cancel</a>
-</body>
-</html>
+<% layout('layouts/boilerplate') %>
+<h1>Edit Campground: <%= campground.title %></h1>
+<form action="/campgrounds/<%= campground._id %>?_method=PUT" method="POST">
+  <div>
+    <label for="title">Campground Title</label>
+    <input type="text" name="title" id="title"  value="<%= campground.title %>">
+  </div>
+  <div>
+    <label for="location">Campground Location</label>
+    <input type="text" name="location" id="location" value="<%= campground.location %>">
+    <!-- value means starting value -->
+  </div>
+  <button type="submit">Update Campground</button>
+</form>
+<a href="/campgrounds/<%= campground._id %>">Cancel</a>
